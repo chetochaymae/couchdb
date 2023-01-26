@@ -1,0 +1,28 @@
+<h1 style="background-color: lightcoral;"> Ajouter un clients</h1>
+<form method="post" action = "/client/add">
+<input type = "text" name = "nom" placeholder="ajouter nom">
+<input type = "text" name = "email" placeholder="ajouter email">
+<input type = "submit" value = "submit">
+</form>
+
+<h1 style="background-color: lightcoral; ">Liste des clients</h1>
+<ul>
+    <% clients.forEach(function(client){ %>
+
+        <li> <h3><%= client.value.nom %></h3>
+             <%= client.value.email %>
+             <form method="post" action = "/client/delete/<%= client.key %>">
+             <input type="hidden" value="<%= client.value.rev %>" name="rev">
+             <input type="submit" value="supprimer">
+             </form>
+
+             
+             <form method="post" action = "/client/update/<%= client.key %>">
+             <input type="hidden" value="<%= client.value.rev %>" name="rev">
+             <input href ="modifier.html"  target="_self" type="submit" value="modifier">
+             </form>
+    
+        </li>
+
+    <% }); %>
+</ul>
